@@ -87,5 +87,5 @@ test('header shows the name with M O V A highlighted in Romanova', () => {
 	assert.match(header[0], /Viktoriia/);
 	const marks = header[0].match(/<span[^>]*class="[^"]*mova[^"]*"[^>]*>([^<]*)<\/span>/g) || [];
 	assert.equal(marks.map((m) => m.replace(/<[^>]+>/g, '')).join(''), 'mova');
-	assert.equal(header[0].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(), 'Viktoriia Romanova');
+	assert.equal(header[0].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(), 'Vasha Viktoriia Romanova');
 });

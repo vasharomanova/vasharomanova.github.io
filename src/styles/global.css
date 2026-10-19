@@ -36,6 +36,7 @@
 }
 
 html {
+	scroll-padding-top: 72px;
 	-webkit-text-size-adjust: 100%;
 }
 
