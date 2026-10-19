@@ -1,14 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import { uk } from '../content/uk';
+import photo from '../assets/vika.jpg';
 
 const { about } = uk;
 ---
 
 <section class="section" id="about" aria-labelledby="about-title">
 	<div class="container grid">
-		<div class="photo" role="img" aria-label={about.photoAlt}>
-			<span aria-hidden="true">В</span>
-		</div>
+		<Image src={photo} alt={about.photoAlt} width={560} class="photo" />
 		<div>
 			<h2 id="about-title">{about.title}</h2>
 			{about.paragraphs.map((p) => <p>{p}</p>)}
@@ -41,14 +41,15 @@ const { about } = uk;
 	}
 
 	.photo {
-		aspect-ratio: 4 / 5;
+		display: block;
+		width: 100%;
 		max-width: 280px;
+		height: auto;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+		object-position: 50% 30%;
 		background: var(--note-3);
 		border-top: 10px solid var(--sea);
-		display: grid;
-		place-items: center;
-		font: 700 5rem/1 var(--font-head);
-		color: var(--sea-text);
 	}
 
 	.facts {
