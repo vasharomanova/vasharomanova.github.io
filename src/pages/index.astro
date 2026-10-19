@@ -4,6 +4,9 @@ import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Lessons from '../components/Lessons.astro';
 import Pricing from '../components/Pricing.astro';
+import LanguagePicker from '../components/LanguagePicker.astro';
+import LanguageDetails from '../components/LanguageDetails.astro';
+import Footer from '../components/Footer.astro';
 import { uk } from '../content/uk';
 ---
 
@@ -13,5 +16,9 @@ import { uk } from '../content/uk';
 		<About />
 		<Lessons />
 		<Pricing />
+		<LanguagePicker />
+		<LanguageDetails id="english" content={uk.details.english} />
+		<LanguageDetails id="spanish" content={uk.details.spanish} />
 	</main>
+	<Footer />
 </Layout>

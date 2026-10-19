@@ -165,6 +165,11 @@ a {
 	gap: 12px;
 }
 
+/* Language blocks: hidden only when JS is running and none is chosen. */
+.js-lang [data-lang-details]:not(.is-open) {
+	display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;

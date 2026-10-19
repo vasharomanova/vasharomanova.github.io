@@ -1,0 +1,65 @@
+---
+import type { LanguageDetailsContent } from '../content/uk';
+import PriceNotes from './PriceNotes.astro';
+import TelegramButton from './TelegramButton.astro';
+
+interface Props {
+	id: 'english' | 'spanish';
+	content: LanguageDetailsContent;
+}
+
+const { id, content } = Astro.props;
+---
+
+<section class="section details" id={id} data-lang-details aria-labelledby={`${id}-title`} tabindex="-1">
+	<div class="container">
+		<h2 id={`${id}-title`}>{content.title}</h2>
+		{content.intro.map((p) => <p class="intro">{p}</p>)}
+
+		<h3>{content.whatTitle}</h3>
+		{content.what.map((p) => <p>{p}</p>)}
+
+		<h3>{content.howTitle}</h3>
+		<p>{content.how}</p>
+
+		<h3>{content.priceTitle}</h3>
+		<PriceNotes prices={content.prices} />
+		<p>{content.materials}</p>
+
+		<div class="cta">
+			<h3>{content.ctaTitle}</h3>
+			<p>{content.ctaText}</p>
+			<TelegramButton />
+		</div>
+	</div>
+</section>
+
+<style>
+	.details {
+		background: #fff;
+		border-left: 8px solid var(--primary);
+	}
+
+	#spanish {
+		border-left-color: var(--sea);
+	}
+
+	.details:focus {
+		outline: none;
+	}
+
+	.intro:first-of-type {
+		font-size: 1.2rem;
+		font-weight: 600;
+	}
+
+	h3 {
+		margin-top: 2rem;
+	}
+
+	.cta {
+		margin-top: 2.5rem;
+		padding-top: 1.5rem;
+		border-top: 2px solid var(--sun);
+	}
+</style>

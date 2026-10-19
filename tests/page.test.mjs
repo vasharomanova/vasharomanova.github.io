@@ -47,3 +47,19 @@ test('pricing shows both prices', () => {
 	assert.match(s, /20 €/);
 	assert.match(s, /30 €/);
 });
+
+test('language details blocks exist, visible without JS, with price and telegram', () => {
+	for (const id of ['english', 'spanish']) {
+		const s = section(id);
+		const open = s.match(/<section[^>]*>/)[0];
+		assert.match(open, /data-lang-details/);
+		assert.doesNotMatch(open, /\shidden/);
+		assert.match(s, /20 €/);
+		assert.match(s, /href="https:\/\/t\.me\//);
+		assert.match(html, new RegExp(`href="#${id}"`));
+	}
+});
+
+test('page has at least four telegram links', () => {
+	assert.ok(count(/href="https:\/\/t\.me\//g) >= 4);
+});

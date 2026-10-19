@@ -1,0 +1,89 @@
+---
+import { uk } from '../content/uk';
+import StickyNote from './StickyNote.astro';
+
+const { languages } = uk;
+---
+
+<section class="section" id="languages" aria-labelledby="languages-title">
+	<div class="container">
+		<h2 id="languages-title">{languages.title}</h2>
+		<ul class="langs">
+			{
+				languages.options.map((lang, i) => (
+					<StickyNote as="li" tint={i === 0 ? 2 : 3}>
+						<h3>{lang.name}</h3>
+						<p>{lang.description}</p>
+						<a href={`#${lang.id}`} class="btn btn--primary" data-lang-link={lang.id}>
+							{lang.button} <span aria-hidden="true">↓</span>
+						</a>
+					</StickyNote>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<script>
+	const ids = ['english', 'spanish'];
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	function open(id: string, scroll: boolean) {
+		if (!ids.includes(id)) return;
+		for (const block of document.querySelectorAll<HTMLElement>('[data-lang-details]')) {
+			block.classList.toggle('is-open', block.id === id);
+		}
+		for (const link of document.querySelectorAll<HTMLElement>('[data-lang-link]')) {
+			if (link.dataset.langLink === id) link.setAttribute('aria-current', 'true');
+			else link.removeAttribute('aria-current');
+		}
+		if (scroll) {
+			const target = document.getElementById(id)!;
+			target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+			target.focus({ preventScroll: true });
+		}
+	}
+
+	for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-lang-link]')) {
+		link.addEventListener('click', (event) => {
+			event.preventDefault();
+			const id = link.dataset.langLink!;
+			history.replaceState(null, '', `#${id}`);
+			open(id, true);
+		});
+	}
+
+	const fromHash = () => open(location.hash.slice(1), true);
+	window.addEventListener('hashchange', fromHash);
+	fromHash();
+</script>
+
+<style>
+	.langs {
+		display: grid;
+		gap: 28px;
+		margin: 1.5rem 0 0;
+		padding: 0;
+	}
+
+	@media (min-width: 640px) {
+		.langs {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.langs :global(li) {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 28px 24px;
+	}
+
+	.langs p {
+		flex: 1;
+	}
+
+	.langs a[aria-current='true'] {
+		background: var(--text);
+	}
+</style>
