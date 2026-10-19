@@ -15,3 +15,17 @@ test('document is Ukrainian with title and meta', () => {
 test('page has exactly one h1', () => {
 	assert.equal(count(/<h1[\s>]/g), 1);
 });
+
+test('telegram links open safely in a new tab', () => {
+	const links = html.match(/<a [^>]*href="https:\/\/t\.me\/[^"]*"[^>]*>/g) || [];
+	assert.ok(links.length >= 1, `expected >=1 telegram links, got ${links.length}`);
+	for (const a of links) {
+		assert.match(a, /target="_blank"/);
+		assert.match(a, /rel="[^"]*noopener[^"]*"/);
+	}
+});
+
+test('hero links to the language section; about section present', () => {
+	assert.match(html, /href="#languages"/);
+	assert.match(html, /Хто я така/);
+});

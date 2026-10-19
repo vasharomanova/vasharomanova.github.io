@@ -1,0 +1,78 @@
+---
+import { uk } from '../content/uk';
+
+const { about } = uk;
+---
+
+<section class="section" id="about" aria-labelledby="about-title">
+	<div class="container grid">
+		<div class="photo" role="img" aria-label={about.photoAlt}>
+			<span aria-hidden="true">В</span>
+		</div>
+		<div>
+			<h2 id="about-title">{about.title}</h2>
+			{about.paragraphs.map((p) => <p>{p}</p>)}
+			<ul class="facts">
+				{
+					about.facts.map((f) => (
+						<li>
+							<strong>{f.value}</strong>
+							<span>{f.label}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style>
+	.grid {
+		display: grid;
+		gap: 32px;
+		align-items: start;
+	}
+
+	@media (min-width: 760px) {
+		.grid {
+			grid-template-columns: 280px 1fr;
+			gap: 56px;
+		}
+	}
+
+	.photo {
+		aspect-ratio: 4 / 5;
+		max-width: 280px;
+		background: var(--note-3);
+		border-top: 10px solid var(--sea);
+		display: grid;
+		place-items: center;
+		font: 700 5rem/1 var(--font-head);
+		color: var(--sea-text);
+	}
+
+	.facts {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px 32px;
+		margin: 24px 0 0;
+		padding: 16px 0 0;
+		border-top: 2px solid var(--sun);
+		list-style: none;
+	}
+
+	.facts li {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.facts strong {
+		font: 700 1.4rem/1.2 var(--font-head);
+		color: var(--primary-btn);
+	}
+
+	.facts span {
+		font-size: 0.9rem;
+		color: var(--text-soft);
+	}
+</style>

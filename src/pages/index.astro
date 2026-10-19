@@ -1,10 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
 import { uk } from '../content/uk';
 ---
 
 <Layout title={uk.meta.title} description={uk.meta.description}>
+	<Hero />
 	<main>
-		<h1>{uk.hero.title}</h1>
+		<About />
 	</main>
 </Layout>

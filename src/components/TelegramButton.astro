@@ -1,0 +1,15 @@
+---
+import { uk } from '../content/uk';
+
+interface Props {
+	label?: string;
+	variant?: 'primary' | 'secondary';
+}
+
+const { label = uk.cta, variant = 'primary' } = Astro.props;
+---
+
+<a href={uk.telegramUrl} target="_blank" rel="noopener noreferrer" class:list={['btn', `btn--${variant}`]}>
+	{label}
+	<span aria-hidden="true">→</span>
+</a>

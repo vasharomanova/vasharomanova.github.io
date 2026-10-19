@@ -1,0 +1,46 @@
+---
+import { uk } from '../content/uk';
+import TelegramButton from './TelegramButton.astro';
+
+const { hero } = uk;
+---
+
+<header class="hero section" id="top">
+	<div class="container">
+		<h1>
+			{hero.title}
+			<span class="accent">{hero.titleAccent}</span>
+		</h1>
+		<p class="lead">{hero.lead}</p>
+		<p>{hero.intro}</p>
+		<div class="btn-row">
+			<TelegramButton />
+			<a href="#languages" class="btn btn--secondary">{hero.chooseLanguage} <span aria-hidden="true">↓</span></a>
+		</div>
+	</div>
+</header>
+
+<style>
+	.hero {
+		padding-top: clamp(40px, 9vw, 112px);
+	}
+
+	h1 {
+		max-width: 20ch;
+	}
+
+	.accent {
+		display: block;
+		color: var(--primary-btn);
+		margin-top: 0.3em;
+	}
+
+	.lead {
+		font-size: 1.2rem;
+		font-weight: 600;
+	}
+
+	.btn-row {
+		margin-top: 28px;
+	}
+</style>

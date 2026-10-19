@@ -1,0 +1,44 @@
+---
+interface Props {
+	tint?: 1 | 2 | 3;
+	as?: 'div' | 'li';
+	class?: string;
+}
+
+const { tint = 1, as: Tag = 'div', class: className } = Astro.props;
+---
+
+<Tag class:list={['note', `note--${tint}`, className]}>
+	<slot />
+</Tag>
+
+<style>
+	.note {
+		position: relative;
+		padding: 20px 18px;
+		line-height: 1.45;
+		box-shadow: 0 6px 14px rgba(58, 42, 34, 0.12);
+		list-style: none;
+	}
+
+	.note--1 {
+		background: var(--note-1);
+		transform: rotate(-2deg);
+	}
+
+	.note--2 {
+		background: var(--note-2);
+		transform: rotate(1.5deg);
+	}
+
+	.note--3 {
+		background: var(--note-3);
+		transform: rotate(-1deg);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.note {
+			transform: none;
+		}
+	}
+</style>
