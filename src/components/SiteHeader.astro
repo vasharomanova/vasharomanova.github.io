@@ -35,10 +35,13 @@ const letters = [...last].map((char, i) => ({ char, mova: highlight.includes(i) 
 
 	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		measure();
-		update();
 		document.fonts.ready.then(measure);
 		addEventListener('resize', measure);
-		addEventListener('scroll', update, { passive: true });
+		// Fallback for browsers without CSS scroll timelines.
+		if (!CSS.supports('animation-timeline: scroll()')) {
+			update();
+			addEventListener('scroll', update, { passive: true });
+		}
 	}
 </script>
 
@@ -71,5 +74,40 @@ const letters = [...last].map((char, i) => ({ char, mova: highlight.includes(i) 
 
 	.fade {
 		opacity: calc(1 - var(--p, 0));
+	}
+
+	/* Browser-driven scroll animation: stays in sync with iOS Safari scrolling, where scroll events lag. */
+	@media (prefers-reduced-motion: no-preference) {
+		@supports (animation-timeline: scroll()) {
+			.move,
+			.fade {
+				/* Longhands only: the minifier collapses the shorthand + timeline into `animation: none`. */
+				animation-timing-function: linear;
+				animation-fill-mode: both;
+				animation-timeline: scroll(root);
+				animation-range: 0 160px;
+			}
+
+			.move {
+				animation-name: to-mova;
+			}
+
+			.fade {
+				animation-name: fade-out;
+			}
+		}
+	}
+
+	@keyframes to-mova {
+		to {
+			color: var(--primary-btn);
+			transform: translateX(var(--dx, 0px));
+		}
+	}
+
+	@keyframes fade-out {
+		to {
+			opacity: 0;
+		}
 	}
 </style>
