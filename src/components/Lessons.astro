@@ -1,0 +1,57 @@
+---
+import { uk } from '../content/uk';
+import StickyNote from './StickyNote.astro';
+
+const { lessons } = uk;
+---
+
+<section class="section" id="lessons" aria-labelledby="lessons-title">
+	<div class="container">
+		<h2 id="lessons-title">{lessons.title}</h2>
+		<p class="lead">{lessons.lead}</p>
+		<p>{lessons.intro}</p>
+
+		<h3>{lessons.allowedTitle}</h3>
+		<ul class="notes">
+			{
+				lessons.allowed.map((item, i) => (
+					<StickyNote as="li" tint={((i % 3) + 1) as 1 | 2 | 3}>
+						{item}
+					</StickyNote>
+				))
+			}
+		</ul>
+
+		{lessons.closing.map((p) => <p>{p}</p>)}
+	</div>
+</section>
+
+<style>
+	.lead {
+		font-size: 1.2rem;
+		font-weight: 600;
+	}
+
+	h3 {
+		margin-top: 2rem;
+	}
+
+	.notes {
+		display: grid;
+		gap: 24px;
+		margin: 1.5rem 0 2.5rem;
+		padding: 0;
+	}
+
+	@media (min-width: 480px) {
+		.notes {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 900px) {
+		.notes {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>

@@ -1,0 +1,15 @@
+---
+import { uk } from '../content/uk';
+import PriceNotes from './PriceNotes.astro';
+
+const { pricing } = uk;
+---
+
+<section class="section" id="pricing" aria-labelledby="pricing-title">
+	<div class="container">
+		<h2 id="pricing-title">{pricing.title}</h2>
+		<PriceNotes prices={pricing.prices} />
+		<p>{pricing.pairNote}</p>
+		<p>{pricing.materials}</p>
+	</div>
+</section>

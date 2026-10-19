@@ -29,3 +29,21 @@ test('hero links to the language section; about section present', () => {
 	assert.match(html, /href="#languages"/);
 	assert.match(html, /Хто я така/);
 });
+
+const section = (id) => {
+	const m = html.match(new RegExp(`<section[^>]*id="${id}"[\\s\\S]*?</section>`));
+	assert.ok(m, `section #${id} missing`);
+	return m[0];
+};
+
+test('lessons list has six sticky notes', () => {
+	const notes = section('lessons').match(/<ul[^>]*class="[^"]*notes[^"]*"[\s\S]*?<\/ul>/);
+	assert.ok(notes, 'notes list missing');
+	assert.equal((notes[0].match(/<li[\s>]/g) || []).length, 6);
+});
+
+test('pricing shows both prices', () => {
+	const s = section('pricing');
+	assert.match(s, /20 €/);
+	assert.match(s, /30 €/);
+});

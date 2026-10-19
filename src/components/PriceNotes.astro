@@ -1,0 +1,55 @@
+---
+import StickyNote from './StickyNote.astro';
+
+interface Props {
+	prices: { label: string; amount: string; note: string }[];
+}
+
+const { prices } = Astro.props;
+---
+
+<ul class="prices">
+	{
+		prices.map((p, i) => (
+			<StickyNote as="li" tint={i % 2 === 0 ? 1 : 3}>
+				<span class="label">{p.label}</span>
+				<strong class="amount">{p.amount}</strong>
+				<span class="note-text">{p.note}</span>
+			</StickyNote>
+		))
+	}
+</ul>
+
+<style>
+	.prices {
+		display: grid;
+		gap: 24px;
+		margin: 0 0 24px;
+		padding: 0;
+		max-width: 560px;
+	}
+
+	@media (min-width: 480px) {
+		.prices {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.prices :global(li) {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.label {
+		font-weight: 700;
+	}
+
+	.amount {
+		font: 700 2.2rem/1.1 var(--font-head);
+	}
+
+	.note-text {
+		font-size: 0.9rem;
+	}
+</style>
