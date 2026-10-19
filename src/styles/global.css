@@ -26,7 +26,7 @@
 	--font-body: 'Manrope', system-ui, sans-serif;
 	--radius: 999px;
 	--gutter: 16px;
-	--max: 1080px;
+	--max: 1200px;
 }
 
 *,
@@ -56,7 +56,6 @@ h3 {
 	line-height: 1.2;
 	margin: 0 0 0.6em;
 	overflow-wrap: break-word;
-	hyphens: auto;
 	text-wrap: balance;
 }
 
@@ -75,7 +74,7 @@ h3 {
 
 p {
 	margin: 0 0 1em;
-	max-width: 62ch;
+	max-width: 75ch;
 }
 
 a {

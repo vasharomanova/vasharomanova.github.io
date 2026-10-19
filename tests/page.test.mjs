@@ -70,3 +70,13 @@ test('focus outline uses a high-contrast colour (>=3:1 on cream and notes)', () 
 	assert.match(rule[0], /outline:3px solid var\(--text\)/);
 	assert.match(html, /\.footer[^{]*:focus-visible[^{]*\{[^}]*outline-color:var\(--sun\)/);
 });
+
+test('telegram links point to Viktoriia', () => {
+	const hrefs = html.match(/href="https:\/\/t\.me\/[^"]*"/g) || [];
+	assert.ok(hrefs.length >= 4);
+	for (const h of hrefs) assert.equal(h, 'href="https://t.me/vashaRomanova"');
+});
+
+test('no automatic hyphenation', () => {
+	assert.doesNotMatch(html, /hyphens:auto/);
+});

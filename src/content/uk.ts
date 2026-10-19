@@ -1,7 +1,7 @@
 // All page copy (Ukrainian). Source: Viktoriia's copy-ukr.md, used verbatim.
 // To add a language later, create a sibling file with the same shape.
 
-const telegramUrl = 'https://t.me/USERNAME';
+const telegramUrl = 'https://t.me/vashaRomanova';
 
 const prices = [
 	{ label: 'Індивідуально', amount: '20 €', note: '60 хвилин' },
