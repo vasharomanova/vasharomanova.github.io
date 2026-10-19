@@ -9,9 +9,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "astro build && node --test tests/*.test.mjs"
   },
   "dependencies": {
+    "@fontsource/manrope": "^5.3.0",
+    "@fontsource/unbounded": "^5.3.0",
     "astro": "^7.4.1"
   }
 }
