@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Lessons from '../components/Lessons.astro';
@@ -11,6 +12,7 @@ import { uk } from '../content/uk';
 ---
 
 <Layout title={uk.meta.title} description={uk.meta.description}>
+	<SiteHeader />
 	<Hero />
 	<main>
 		<About />

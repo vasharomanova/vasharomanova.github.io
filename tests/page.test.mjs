@@ -80,3 +80,12 @@ test('telegram links point to Viktoriia', () => {
 test('no automatic hyphenation', () => {
 	assert.doesNotMatch(html, /hyphens:auto/);
 });
+
+test('header shows the name with M O V A highlighted in Romanova', () => {
+	const header = html.match(/<header[^>]*class="[^"]*site-header[\s\S]*?<\/header>/);
+	assert.ok(header, 'site header missing');
+	assert.match(header[0], /Viktoriia/);
+	const marks = header[0].match(/<span[^>]*class="[^"]*mova[^"]*"[^>]*>([^<]*)<\/span>/g) || [];
+	assert.equal(marks.map((m) => m.replace(/<[^>]+>/g, '')).join(''), 'mova');
+	assert.equal(header[0].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(), 'Viktoriia Romanova');
+});

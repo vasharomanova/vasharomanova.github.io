@@ -1,0 +1,30 @@
+---
+import { uk } from '../content/uk';
+
+const { first, last, highlight } = uk.brand;
+const letters = [...last].map((char, i) => ({ char, mova: highlight.includes(i) }));
+---
+
+<header class="site-header">
+	<div class="container">
+		<a href="#top" class="brand" aria-label={`${first} ${last}`}>
+			{first} <span class="last">{letters.map((l) => (l.mova ? <span class="mova">{l.char}</span> : l.char))}</span>
+		</a>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		padding: 20px 0 0;
+	}
+
+	.brand {
+		font: 700 1.05rem/1.2 var(--font-head);
+		letter-spacing: 0.01em;
+		text-decoration: none;
+	}
+
+	.mova {
+		color: var(--primary-btn);
+	}
+</style>

@@ -15,6 +15,8 @@ export const uk = {
 			'Англійська та іспанська для дорослих, які хочуть говорити, а не просто впізнавати Present Perfect у дикій природі. Zoom, 60 хвилин, 20 €.',
 	},
 	telegramUrl,
+	// Letters at these indexes of `last` are highlighted so "Romanova" reveals "mova" (мова).
+	brand: { first: 'Viktoriia', last: 'Romanova', highlight: [2, 5, 6, 7] },
 	cta: 'Написати Віці',
 	hero: {
 		title: 'Англійська та іспанська для дорослих.',
