@@ -18,6 +18,10 @@ import TelegramButton from './TelegramButton.astro';
 		text-align: center;
 	}
 
+	.footer :global(:focus-visible) {
+		outline-color: var(--sun);
+	}
+
 	.footer p {
 		margin: 20px auto 0;
 		font-size: 0.9rem;

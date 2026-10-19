@@ -63,3 +63,10 @@ test('language details blocks exist, visible without JS, with price and telegram
 test('page has at least four telegram links', () => {
 	assert.ok(count(/href="https:\/\/t\.me\//g) >= 4);
 });
+
+test('focus outline uses a high-contrast colour (>=3:1 on cream and notes)', () => {
+	const rule = html.match(/:focus-visible\{[^}]*\}/);
+	assert.ok(rule, ':focus-visible rule missing');
+	assert.match(rule[0], /outline:3px solid var\(--text\)/);
+	assert.match(html, /\.footer[^{]*:focus-visible[^{]*\{[^}]*outline-color:var\(--sun\)/);
+});
